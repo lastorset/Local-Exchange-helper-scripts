@@ -45,6 +45,9 @@ foreach ($dirs as $dir)
 		$file = preg_replace('#(\sglobal .*?)((, ?)?\$lng_\w*)+#', "$1", $file, -1 , $string_count);
 		$globals_count += $string_count;
 
+		// Remove empty globals declarations
+		$file = preg_replace('#\s*global ;#', "", $file);
+
 		// Search and replace
 		foreach ($GLOBALS as $key => $string)
 		{
