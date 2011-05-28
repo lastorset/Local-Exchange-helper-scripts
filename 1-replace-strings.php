@@ -49,7 +49,8 @@ foreach ($dirs as $dir)
 		$file = preg_replace('#\s*global ;(\s// added by ejkv)?#', "", $file);
 
 		// Remove "Added by ejkv" comments that were obsoleted by the above
-		$file = preg_replace('#\s*// added \$lng_\w* by ejkv#', "", $file);
+		$file = preg_replace('#\s*// ((added|removed) (\$lng_\w*( and |, ?)?)+)+ (- )?by ejkv#', "", $file);
+		$file = preg_replace('#\s*// replaced \$lng_\w*.*?(- )?by ejkv#', "", $file);
 
 		// Search and replace
 		foreach ($GLOBALS as $key => $string)
