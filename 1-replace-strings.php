@@ -15,6 +15,7 @@ $dirs = array(".", "includes", "classes");
 $excepts = array("inc.config.php"); // temporarily, since it is not version controlled.
 $total = 0;
 $file_count = 0;
+$globals_count = 0;
 
 foreach ($dirs as $dir)
 {
@@ -40,6 +41,11 @@ foreach ($dirs as $dir)
 		$count = 0;
 		$file_count++;
 
+		// Remove strings from globals list
+		$file = preg_replace('#(	global .*?)((, ?)?\$lng_\w*)+#', "$1", $file, -1 , $string_count);
+
+		$globals_count += $string_count;
+
 		// Search and replace
 		foreach ($GLOBALS as $key => $string)
 		{
@@ -59,5 +65,5 @@ foreach ($dirs as $dir)
 	}
 }
 
-echo "$total strings marked for translation in $file_count files.\n";
+echo "$total strings marked for translation ($globals_count 'global' declarations) in $file_count files.\n";
 ?>
