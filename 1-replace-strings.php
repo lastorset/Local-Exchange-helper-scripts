@@ -83,5 +83,9 @@ $total strings marked for translation ($orphaned_count orphaned strings)
 $globals_count globals removed
 in $file_count files.
 
+Some manual work may remain. Check the following:
+- Weird comments
+- Orphaned strings (marked as such in the code)
+
 STATS;
 ?>
