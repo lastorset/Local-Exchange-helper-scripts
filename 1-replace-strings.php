@@ -41,9 +41,8 @@ foreach ($dirs as $dir)
 		$count = 0;
 		$file_count++;
 
-		// Remove strings from globals list
-		$file = preg_replace('#(	global .*?)((, ?)?\$lng_\w*)+#', "$1", $file, -1 , $string_count);
-
+		// Remove strings from globals declarations
+		$file = preg_replace('#(\sglobal .*?)((, ?)?\$lng_\w*)+#', "$1", $file, -1 , $string_count);
 		$globals_count += $string_count;
 
 		// Search and replace
