@@ -42,8 +42,8 @@ foreach ($dirs as $dir)
 		$file_count++;
 
 		// Remove strings from globals declarations
-		$file = preg_replace('#(\sglobal .*?)((, ?)?\$lng_\w*)+#', "$1", $file, -1 , $string_count);
-		$globals_count += $string_count;
+		$file = preg_replace('#(\sglobal .*?)((, ?)?\$lng_\w*)+#', "$1", $file, -1 , $replace_count);
+		$globals_count += $replace_count;
 
 		// Remove empty globals declarations
 		$file = preg_replace('#\s*global ;(\s// added by ejkv)?#', "", $file);
@@ -57,8 +57,8 @@ foreach ($dirs as $dir)
 		{
 			if (strpos($key, "lng") === 0)
 			{
-				$file = preg_replace('#\$'. $key. '\b#', "_(\"$string\")", $file, -1 , $string_count);
-				$count += $string_count;
+				$file = preg_replace('#\$'. $key. '\b#', "_(\"$string\")", $file, -1 , $replace_count);
+				$count += $replace_count;
 			}
 		}
 
