@@ -46,7 +46,10 @@ foreach ($dirs as $dir)
 		$globals_count += $string_count;
 
 		// Remove empty globals declarations
-		$file = preg_replace('#\s*global ;#', "", $file);
+		$file = preg_replace('#\s*global ;(\s// added by ejkv)?#', "", $file);
+
+		// Remove "Added by ejkv" comments that were obsoleted by the above
+		$file = preg_replace('#\s*// added \$lng_\w* by ejkv#', "", $file);
 
 		// Search and replace
 		foreach ($GLOBALS as $key => $string)
