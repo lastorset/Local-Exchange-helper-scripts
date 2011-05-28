@@ -16,6 +16,7 @@ $excepts = array("inc.config.php"); // temporarily, since it is not version cont
 $total = 0;
 $file_count = 0;
 $globals_count = 0;
+$orphaned_count = 0;
 
 foreach ($dirs as $dir)
 {
@@ -62,6 +63,10 @@ foreach ($dirs as $dir)
 			}
 		}
 
+		// Orphaned strings (no English version, only Dutch)
+		$file = preg_replace('#\$lng_(\w*)#', '_("$1" /* orphaned string */)', $file, -1 , $replace_count);
+		$orphaned_count += $replace_count;
+
 		// Print status
 		echo "$count strings marked.\n";
 		$total += $count;
@@ -71,5 +76,12 @@ foreach ($dirs as $dir)
 	}
 }
 
-echo "$total strings marked for translation ($globals_count 'global' declarations) in $file_count files.\n";
+echo <<<STATS
+
+Statistics:
+$total strings marked for translation ($orphaned_count orphaned strings)
+$globals_count globals removed
+in $file_count files.
+
+STATS;
 ?>
