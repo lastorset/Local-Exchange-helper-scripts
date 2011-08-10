@@ -4,15 +4,10 @@
 
 // The algorithm is pretty brute-force, but for something that is only done once that should be OK.
 
-
-// BUG: Need to replace only exact matches of $lng_ variable names.
-// Otherwise, $lng_new will partially replace $lng_news_and_events.
-
-
 include("includes/lang/inc.US_lang.php");
 
 $dirs = array(".", "includes", "classes");
-$excepts = array("inc.config.php"); // temporarily, since it is not version controlled.
+$excepts = array();
 $total = 0;
 $file_count = 0;
 $globals_count = 0;
@@ -86,6 +81,9 @@ in $file_count files.
 Some manual work may remain. Check the following:
 - Weird comments
 - Orphaned strings (marked as such in the code)
+
+With or without addressing the above, you may now run the following command to generate a POT file:
+xgettext --no-wrap --language=PHP --output=includes/lang/lex.pot *.php includes/*.php classes/*.php
 
 STATS;
 ?>
