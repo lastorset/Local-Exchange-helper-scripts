@@ -13,6 +13,10 @@ $file_count = 0;
 $globals_count = 0;
 $orphaned_count = 0;
 
+// Address components are constants rather than $lng_ variables
+$constants = get_defined_constants(true);
+$constants = $constants['user'];
+
 foreach ($dirs as $dir)
 {
 	// Read file list
@@ -56,6 +60,12 @@ foreach ($dirs as $dir)
 				$file = preg_replace('#\$'. $key. '\b#', "_(\"$string\")", $file, -1 , $replace_count);
 				$count += $replace_count;
 			}
+		}
+
+		foreach ($constants as $key => $string)
+		{
+			$file = preg_replace('#'. $key. '\b#', "_(\"$string\")", $file, -1 , $replace_count);
+			$count += $replace_count;
 		}
 
 		// Orphaned strings (no English version, only Dutch)
