@@ -9,6 +9,8 @@
 // 3: Output them to a prepared .po file.
 // Fix up constants manually.
 
+$pofilename = "includes/lang/nl_NL/LC_MESSAGES/nl.po";
+
 // Scan all English strings
 include("includes/lang/inc.US_lang.php");
 foreach ($GLOBALS as $key => $string)
@@ -43,8 +45,8 @@ foreach ($strings as $key => $string)
 	{
 		echo "\n\$$key:\n";
 		print_r($string);
+		$missing++;
 	}
-	$missing++;
 }
 
 if ($missing > 0)
@@ -52,5 +54,32 @@ if ($missing > 0)
 	echo "\nPlease add missing strings and rerun the script.\n";
 	exit(1);
 }
+else
+{
+	echo "None; all is well.\n";
+}
+
+// Import the prepared .po file
+
+$pofile = file_get_contents($pofilename);
+
+$progress['count'] = count($strings);
+$progress['current'] = 0;
+$progress['width'] = 80;
+
+foreach ($strings as $key => $string)
+{
+	$progress['current']++;
+	// Find the English string
+	$eng_pos = strpos($pofile, "msgid \"". $string['eng'] ."\"");
+	if ($eng_pos === false)
+	{
+		echo "\nDid not find $". $key .": \"". $string['eng'] ."\"\n";
+	}
+	else
+		echo "=";
+}
+
+echo "\n";
 
 ?>
