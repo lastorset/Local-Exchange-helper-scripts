@@ -2,6 +2,8 @@
 // Scripts to migrate E. J. Klein Velderman's Lex translation system to GNU gettext.
 // Phase II: Import Dutch translations
 
+// WORK IN PROGRESS: part 3 below is not complete!
+
 // 1: Scan English strings
 //		Include the English language file, extract all globals and place them in a hash.
 // 2: Scan Dutch strings
