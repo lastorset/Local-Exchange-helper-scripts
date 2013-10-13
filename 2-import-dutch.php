@@ -1,4 +1,6 @@
 <?php
+// DEPRECATED: Use extract-language.php instead.
+
 // Scripts to migrate E. J. Klein Velderman's Lex translation system to GNU gettext.
 // Phase II: Import Dutch translations
 
