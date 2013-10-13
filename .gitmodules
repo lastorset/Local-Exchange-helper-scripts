@@ -1,0 +1,3 @@
+[submodule "po-parser"]
+	path = po-parser
+	url = https://github.com/clinisbut/PHP-po-parser.git
